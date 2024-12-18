@@ -1,6 +1,7 @@
 import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
+import io
 
 # Add custom CSS to center all elements
 st.markdown(
@@ -80,6 +81,22 @@ schedule = calculate_mortgage_schedule(
     annual_lump_sum=annual_lump_sum,
     interest_rate=interest_rate
 )
+
+# Create a CSV file for download
+@st.cache_data
+def convert_df_to_csv(df):
+    return df.to_csv(index=False)
+
+csv = convert_df_to_csv(schedule)
+
+# Sidebar download button
+st.sidebar.download_button(
+    label="Download CSV",
+    data=csv,
+    file_name='mortgage_schedule.csv',
+    mime='text/csv'
+)
+
 
 # Display results
 st.header("Mortgage Repayment Schedule")
