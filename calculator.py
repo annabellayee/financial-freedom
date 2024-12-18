@@ -31,7 +31,7 @@ def calculate_mortgage_schedule(current_year, mortgage_owing, fortnightly_paymen
         
         schedule.append({
             "Year": year,
-            "Actual Year": str(actual_year),  # No comma formatting, using plain string
+            "Actual Year": str(actual_year),  
             "Interest Paid": round(interest_paid, 0),
             "Principal Paid": round(principal_paid, 0),
             "Mortgage Balance": round(max(0, mortgage_owing), 0)
@@ -61,7 +61,8 @@ schedule = calculate_mortgage_schedule(
 
 # Display results
 st.header("Mortgage Repayment Schedule")
-st.dataframe(schedule)  # Display the table
+n_rows = len(schedule)
+st.dataframe(schedule, hide_index=True, height = int(35.2*(n_rows+1)))  # Display the table
 
 # Plot graph with two y-axes
 fig = go.Figure()
