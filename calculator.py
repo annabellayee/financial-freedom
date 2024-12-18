@@ -2,6 +2,28 @@ import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 
+# Add custom CSS to center all elements
+st.markdown(
+    """
+    <style>
+    /* Center the main content */
+    .main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Center the titles */
+    h1, h2, h3, h4, h5, h6 {
+        text-align: center;
+    
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 # Function to calculate mortgage schedule
 def calculate_mortgage_schedule(current_year, mortgage_owing, fortnightly_payment, annual_lump_sum, interest_rate):
     schedule = []
@@ -61,8 +83,8 @@ schedule = calculate_mortgage_schedule(
 
 # Display results
 st.header("Mortgage Repayment Schedule")
-n_rows = len(schedule)
-st.dataframe(schedule, hide_index=True, height = int(35.2*(n_rows+1)))  # Display the table
+n_rows = len(schedule) #define n_rows so i can use magic formula below for perfect height of df
+st.dataframe(schedule, hide_index=True, height = int(35.2*(n_rows+1)), use_container_width=True)  # Display the table
 
 # Plot graph with two y-axes
 fig = go.Figure()
