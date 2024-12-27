@@ -5,6 +5,8 @@
 ![License](https://img.shields.io/badge/License-MIT-blue.svg)
 ![Status](https://img.shields.io/badge/Status-Active-brightgreen)
 
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/I2I7181CR0)
+
 ## 📖 Overview
 
 The **Financial Freedom App** is an interactive tool designed to help users manage and visualize their mortgage repayment schedules. With features like custom input parameters, detailed yearly breakdowns, and dynamic charts, you can plan your path to financial independence effectively.
