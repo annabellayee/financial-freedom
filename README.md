@@ -75,8 +75,7 @@ Click the `Download CSV` button in the sidebar to save your schedule.
 ## 📷 Screenshots
 
 ### Home Page
-<img src="img/homepage.png" width="50%">
-
+![Home Page](img/homepage.png)
 
 ### Interactive Chart
 ![Interactive Chart](img/chart.png)
