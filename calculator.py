@@ -2,6 +2,7 @@ import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 import io
+from datetime import datetime
 
 # Add custom CSS to center all elements
 st.markdown(
@@ -66,9 +67,10 @@ def calculate_mortgage_schedule(current_year, mortgage_owing, fortnightly_paymen
 st.title("Mortgage Calculator")
 
 # Sidebar for user inputs
+current_year = datetime.now().year
 st.sidebar.header("Input Parameters")
-current_year = st.sidebar.number_input("Current Year", value=2024, step=1)
-mortgage_owing = st.sidebar.number_input("Mortgage Owing ($)", value=500000.0, step=10000.0)
+current_year = st.sidebar.number_input("Current Year", value=current_year, step=1)
+mortgage_owing = st.sidebar.number_input("Mortgage Owing ($)", value=300000.0, step=10000.0)
 fortnightly_payment = st.sidebar.number_input("Fortnightly Payment ($)", value=2000.0, step=100.0)
 annual_lump_sum = st.sidebar.number_input("Annual Lump Sum Payment ($)", value=10000.0, step=1000.0)
 interest_rate = st.sidebar.number_input("Interest Rate (%)", value=5.0, step=0.1)
