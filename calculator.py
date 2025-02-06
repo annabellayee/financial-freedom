@@ -113,8 +113,7 @@ fig.add_trace(go.Scatter(
     x=schedule["Year"], 
     y=schedule["Mortgage Balance"], 
     mode='lines+markers', 
-    name="Mortgage Balance",
-    yaxis="y1"
+    name="Mortgage Balance"
 ))
 
 # Principal Paid and Interest Paid on secondary y-axis
@@ -122,15 +121,13 @@ fig.add_trace(go.Bar(
     x=schedule["Year"], 
     y=schedule["Principal Paid"], 
     name="Principal Paid", 
-    opacity=0.6,
-    yaxis="y2"
+    opacity=0.6
 ))
 fig.add_trace(go.Bar(
     x=schedule["Year"], 
     y=schedule["Interest Paid"], 
     name="Interest Paid", 
-    opacity=0.6,
-    yaxis="y2"
+    opacity=0.6
 ))
 
 # Update layout to include secondary y-axis
@@ -146,8 +143,9 @@ fig.update_layout(
         title="Principal/Interest Paid ($)",
         titlefont=dict(color="red"),
         tickfont=dict(color="red"),
-        overlaying="y",
-        side="right"
+        overlaying="y",    # overlay this y-axis with the primary y-axis
+        side="right",
+        anchor="x"
     ),
     legend=dict(x=0.5, y=1.2, orientation="h"),
     barmode="stack"
