@@ -143,12 +143,14 @@ fig.update_layout(
         title="Principal/Interest Paid ($)",
         titlefont=dict(color="red"),
         tickfont=dict(color="red"),
-        overlaying="y",    # overlay this y-axis with the primary y-axis
+        overlaying="y",
         side="right",
-        anchor="x"
+        showgrid=False,  # Ensure this axis behaves correctly
+        showline=True
     ),
     legend=dict(x=0.5, y=1.2, orientation="h"),
     barmode="stack"
 )
+
 
 st.plotly_chart(fig)
