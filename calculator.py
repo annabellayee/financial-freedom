@@ -106,51 +106,44 @@ n_rows = len(schedule) #define n_rows so i can use magic formula below for perfe
 st.dataframe(schedule, hide_index=True, height = int(35.2*(n_rows+1)), use_container_width=True)  # Display the table
 
 
-# Plot graph with two y-axes
-fig = go.Figure()
-
-# Mortgage Balance on primary y-axis
-fig.add_trace(go.Scatter(
+# Mortgage Balance Over Time
+fig1 = go.Figure()
+fig1.add_trace(go.Scatter(
     x=schedule["Year"], 
     y=schedule["Mortgage Balance"], 
     mode='lines+markers', 
-    name="Mortgage Balance"
+    name="Mortgage Balance",
+    line=dict(color='#90caf9')
 ))
 
-# Principal Paid and Interest Paid on secondary y-axis
-fig.add_trace(go.Bar(
+fig1.update_layout(
+    title="Mortgage Balance Over Time",
+    xaxis_title="Year",
+    yaxis_title="Mortgage Balance ($)",
+)
+
+# Principal & Interest Paid Over Time
+fig2 = go.Figure()
+fig2.add_trace(go.Bar(
     x=schedule["Year"], 
     y=schedule["Principal Paid"], 
     name="Principal Paid", 
-    opacity=0.6,
-    yaxis="y2"  # Assign to secondary y-axis
+    marker_color='#aed581'
 ))
-fig.add_trace(go.Bar(
+fig2.add_trace(go.Bar(
     x=schedule["Year"], 
     y=schedule["Interest Paid"], 
     name="Interest Paid", 
-    opacity=0.6,
-    yaxis="y2"  # Assign to secondary y-axis
+    marker_color='#ff7e82'
 ))
 
-# Update layout to include secondary y-axis
-fig.update_layout(
-    title="Mortgage Repayment Over Time",
-    xaxis=dict(title="Year"),
-    yaxis=dict(
-        title="Mortgage Balance ($)",
-        titlefont=dict(color="blue"),
-        tickfont=dict(color="blue")
-    ),
-    yaxis2=dict(
-        title="Principal/Interest Paid ($)",
-        titlefont=dict(color="red"),
-        tickfont=dict(color="red"),
-        overlaying="y",
-        side="right",  # Place on the right side
-    ),
-    legend=dict(x=0.5, y=1.2, orientation="h"),
+fig2.update_layout(
+    title="Principal & Interest Paid Over Time",
+    xaxis_title="Year",
+    yaxis_title="Amount Paid ($)",
     barmode="stack"
 )
 
-st.plotly_chart(fig)
+# Display the charts in Streamlit
+st.plotly_chart(fig1)
+st.plotly_chart(fig2)
