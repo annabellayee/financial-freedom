@@ -105,6 +105,7 @@ st.header("Mortgage Repayment Schedule")
 n_rows = len(schedule) #define n_rows so i can use magic formula below for perfect height of df
 st.dataframe(schedule, hide_index=True, height = int(35.2*(n_rows+1)), use_container_width=True)  # Display the table
 
+
 # Plot graph with two y-axes
 fig = go.Figure()
 
@@ -121,13 +122,15 @@ fig.add_trace(go.Bar(
     x=schedule["Year"], 
     y=schedule["Principal Paid"], 
     name="Principal Paid", 
-    opacity=0.6
+    opacity=0.6,
+    yaxis="y2"  # Assign to secondary y-axis
 ))
 fig.add_trace(go.Bar(
     x=schedule["Year"], 
     y=schedule["Interest Paid"], 
     name="Interest Paid", 
-    opacity=0.6
+    opacity=0.6,
+    yaxis="y2"  # Assign to secondary y-axis
 ))
 
 # Update layout to include secondary y-axis
@@ -144,13 +147,10 @@ fig.update_layout(
         titlefont=dict(color="red"),
         tickfont=dict(color="red"),
         overlaying="y",
-        side="right",
-        showgrid=False,  # Ensure this axis behaves correctly
-        showline=True
+        side="right",  # Place on the right side
     ),
     legend=dict(x=0.5, y=1.2, orientation="h"),
     barmode="stack"
 )
-
 
 st.plotly_chart(fig)
